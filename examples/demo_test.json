@@ -1,0 +1,101 @@
+{
+  "schema": "englishtest/v1",
+  "meta": {
+    "title": "Demo: The Four-Day Week",
+    "level": "B2",
+    "topic": "Work & productivity",
+    "round": 1,
+    "grammar_topics": ["Third & mixed conditionals", "Passive reporting structures"]
+  },
+  "text": {
+    "title": "Is the four-day week here to stay?",
+    "paragraphs": [
+      "When a group of British companies **trialled** a four-day week in 2022, few expected the results to be so striking. Of the 61 firms that took part, 56 decided to continue with the scheme once the six-month pilot had ended.",
+      "Employees reported lower levels of stress and burnout, while revenue remained broadly stable. Managers, however, admitted that the transition had required a **thorough** review of how meetings were organised.",
+      "Critics argue that the model cannot be applied to every industry. Hospitals and schools, they say, would struggle to comply with staffing requirements if working hours were cut. It is believed that around 15% of jobs could not be adapted at all.",
+      "Supporters remain **undeterred**. Had the pilot failed, they concede, the idea would probably have been shelved for a decade. Instead, it is now being discussed in parliaments across Europe."
+    ]
+  },
+  "review": null,
+  "vocabulary": [
+    {"en": "to trial", "in_text": "trialled", "ru": "испытывать, тестировать", "example": "The school trialled a new timetable last term."},
+    {"en": "burnout", "in_text": "burnout", "ru": "выгорание", "example": "Long shifts often lead to burnout."},
+    {"en": "to comply with", "in_text": "comply with", "ru": "соблюдать, соответствовать", "example": "All staff must comply with safety rules."},
+    {"en": "to shelve an idea", "in_text": "shelved", "ru": "отложить идею в долгий ящик", "example": "The project was shelved due to lack of funds."},
+    {"en": "undeterred", "in_text": "undeterred", "ru": "не сломленный, не отступивший", "example": "Undeterred by the rain, they went hiking."},
+    {"en": "thorough", "in_text": "thorough", "ru": "тщательный", "example": "The police carried out a thorough search."}
+  ],
+  "grammar_notes": [
+    {"title": "Third & mixed conditionals", "explanation": "Third: If + Past Perfect, would have + V3 — нереальное прошлое.\nMixed: If + Past Perfect, would + V1 — прошлое условие → результат сейчас.\nИнверсия: Had the pilot failed… = If the pilot had failed…\nЛовушка: НЕ используем would в части с if.", "examples": ["Had the pilot failed, the idea would have been shelved.", "If they had cut hours, hospitals would be understaffed now."]},
+    {"title": "Passive reporting structures", "explanation": "It is believed / said / thought that + clause\nили Subject + is believed + to do / to have done.", "examples": ["It is believed that 15% of jobs cannot be adapted.", "The scheme is said to have improved well-being."]}
+  ],
+  "sections": [
+    {
+      "title": "Vocabulary practice",
+      "tasks": [
+        {"id": "A", "type": "matching", "title": "Meanings", "instruction": "Match the words (1-4) with their meanings (a-e).",
+         "items": [
+           {"left": "burnout", "answer": "extreme tiredness caused by overwork"},
+           {"left": "thorough", "answer": "careful and complete"},
+           {"left": "undeterred", "answer": "continuing despite difficulties"},
+           {"left": "to shelve", "answer": "to postpone a plan indefinitely"}
+         ],
+         "extra": ["to make something legally binding"]},
+        {"id": "B", "type": "gap_fill", "title": "Verbs in context", "instruction": "Complete the sentences with the correct form of a verb from the box.",
+         "box": ["trial", "comply", "shelve"],
+         "items": [
+           {"text": "The council ___ the new parking system in two districts last spring.", "answers": [["trialled", "trialed"]]},
+           {"text": "Firms that fail to ___ with the regulations will be fined.", "answers": [["comply"]]},
+           {"text": "___ plans to build a stadium on Monday, the mayor said.", "answers": [["Shelved"]], "explanation": "Причастие в начале предложения — с заглавной."}
+         ]},
+        {"id": "C", "type": "gap_fill", "title": "Word formation", "instruction": "Complete each sentence with a word formed from the word in brackets.",
+         "items": [
+           {"text": "The pilot was a huge ___ for the campaign. (SUCCEED)", "answers": [["success"]]},
+           {"text": "Most staff felt far less ___ after the change. (STRESS)", "answers": [["stressed"]]}
+         ]},
+        {"id": "D", "type": "multiple_choice", "title": "Odd one out", "instruction": "Choose the word that does NOT collocate.",
+         "items": [{"question": "___ + a scheme", "options": ["launch", "trial", "abandon", "commit"], "answer": "commit"}]}
+      ]
+    },
+    {
+      "title": "Grammar & Use of English",
+      "tasks": [
+        {"id": "G1", "type": "gap_fill", "title": "Conditionals", "instruction": "Put the verbs in brackets into the correct form.",
+         "items": [
+           {"text": "If the firms ___ (not / take) part, we ___ (not / know) the results now.", "answers": [["hadn't taken", "had not taken"], ["wouldn't know", "would not know"]], "explanation": "Mixed conditional: прошлое условие → результат в настоящем."},
+           {"text": "___ (the pilot / fail), the idea would have been shelved.", "answers": [["Had the pilot failed"]], "explanation": "Инверсия вместо If the pilot had failed."}
+         ]},
+        {"id": "G2", "type": "multiple_choice", "title": "Choose the correct option", "instruction": "Choose the correct option.",
+         "items": [{"question": "The scheme is said ___ well-being significantly.", "options": ["to improve", "to have improved", "improving"], "answer": "to have improved", "explanation": "Действие в прошлом → perfect infinitive."}]},
+        {"id": "G3", "type": "error_correction", "title": "Find the mistake", "instruction": "Each sentence contains one mistake. Rewrite it correctly.",
+         "items": [{"text": "If they would have cut hours, schools would have struggled.", "answers": ["If they had cut hours, schools would have struggled."], "explanation": "В части с if не используем would."}]},
+        {"id": "F", "type": "gap_fill", "title": "Key word transformation", "instruction": "Complete the second sentence so that it means the same as the first. Use the word given and 2-5 words.",
+         "items": [{"prompt": "People believe that 15% of jobs cannot be adapted.", "key": "BELIEVED", "text": "It ___ 15% of jobs cannot be adapted.", "answers": [["is believed that"]]}]},
+        {"id": "E", "type": "open", "title": "Translation", "instruction": "Translate into English using the vocabulary from the list.",
+         "items": [{"text": "Если бы эксперимент провалился, идею отложили бы на десятилетие.", "answers": ["If the experiment had failed, the idea would have been shelved for a decade."], "model_answer": "Had the experiment failed, the idea would have been shelved for a decade."}]}
+      ]
+    },
+    {
+      "title": "Reading Comprehension",
+      "tasks": [
+        {"id": "I", "type": "true_false", "title": "True / False / Not Given", "instruction": "Are the statements True (T), False (F) or Not Given (NG)?", "options": ["T", "F", "NG"],
+         "items": [
+           {"statement": "Most companies kept the four-day week after the trial.", "answer": "T"},
+           {"statement": "Revenue fell sharply during the pilot.", "answer": "F"},
+           {"statement": "The trial was funded by the government.", "answer": "NG"}
+         ]},
+        {"id": "K", "type": "gap_fill", "title": "Short answers", "instruction": "Complete the sentences with NO MORE THAN THREE WORDS AND/OR A NUMBER.",
+         "items": [{"text": "The pilot lasted ___.", "answers": [["six months", "6 months"]]}]},
+        {"id": "L", "type": "open", "title": "Numbers", "instruction": "What do these numbers refer to in the article?",
+         "items": [{"text": "56", "model_answer": "The number of firms that continued with the scheme."}]}
+      ]
+    },
+    {
+      "title": "Speaking & Writing",
+      "tasks": [
+        {"id": "S", "type": "discussion", "title": "Speaking", "instruction": "Discuss in pairs.", "items": [{"text": "Would a four-day week work in your industry? Why / why not?"}]},
+        {"id": "W", "type": "writing", "title": "Writing", "instruction": "Opinion paragraph: Should the four-day week become the norm? Give two arguments and use at least one conditional.", "min_words": 150, "max_words": 180, "required_words": ["burnout", "comply with", "thorough", "undeterred", "to shelve"]}
+      ]
+    }
+  ]
+}

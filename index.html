@@ -3,27 +3,32 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>English Workbook</title>
-<meta name="description" content="Тренажёр английского: превращает любую статью в интерактивный тест с помощью ИИ, проверяет ответы и готовит разбор ошибок.">
+<title>Language Workbook</title>
+<meta name="description" content="Тренажёр иностранных языков (английский, немецкий, французский, итальянский, китайский): превращает любой текст в интерактивный тест с помощью ИИ, проверяет ответы и готовит разбор ошибок.">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%232f5d8a'/%3E%3Ctext x='16' y='22' font-family='Georgia,serif' font-size='16' text-anchor='middle' fill='white'%3EAa%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&family=Noto+Sans+SC:wght@400;500;700&family=Noto+Serif+SC:wght@400;600&display=swap">
 <link rel="stylesheet" href="style.css">
 <script>
   try {
     const s = JSON.parse(localStorage.getItem('ewb:settings') || '{}');
-    if (s.theme === 'dark' || s.theme === 'light') document.documentElement.dataset.theme = s.theme;
+    const d = document.documentElement;
+    if (s.theme === 'dark' || s.theme === 'light') d.dataset.theme = s.theme;
+    d.dataset.py = s.pinyinMode || 'hidden';
+    d.dataset.lang = s.lang || 'en';
+    d.dataset.script = s.lang === 'zh' ? 'han' : 'latin';
   } catch (e) {}
 </script>
 </head>
 <body>
 <header class="topbar">
   <a class="brand" href="#">
-    <span class="brand-mark">Aa</span>
-    <span>English Workbook</span>
+    <span class="brand-mark" id="brand-mark">Aa</span>
+    <span>Language Workbook</span>
   </a>
   <div class="topbar-center" id="topbar-center"></div>
   <div class="topbar-right">
+    <button class="btn sm" id="btn-py" title="Режим пиньиня (Alt+P)" hidden>拼音: скрыт</button>
     <button class="icon-btn" id="btn-settings" title="Настройки">⚙</button>
     <button class="icon-btn" id="btn-theme" title="Светлая / тёмная тема">◐</button>
   </div>
@@ -32,6 +37,7 @@
 <div id="bar-slot"></div>
 <div id="toasts"></div>
 <div id="modal-root"></div>
+<script src="langs.js"></script>
 <script src="prompts.js"></script>
 <script src="demo.js"></script>
 <script src="store.js"></script>

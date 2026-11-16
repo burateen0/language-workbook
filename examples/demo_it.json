@@ -1,0 +1,38 @@
+{
+  "schema": "workbook/v2",
+  "language": "it",
+  "meta": {"title": "Демо: Una giornata a Roma", "level": "A2", "topic": "Путешествия", "round": 1, "grammar_topics": ["Passato prossimo (essere / avere)", "Preposizioni articolate"]},
+  "text": {
+    "title": "Una giornata a Roma",
+    "paragraphs": [
+      {"text": "Ieri sono andata a Roma con la mia amica Giulia. Abbiamo visitato il **Colosseo** e abbiamo mangiato un gelato vicino alla Fontana di Trevi.", "ru": "Вчера я поехала в Рим с подругой Джулией. Мы посетили Колизей и съели мороженое рядом с фонтаном Треви."},
+      {"text": "La città è bellissima, ma c'erano tanti turisti. La sera siamo tornate a casa stanche ma felici.", "ru": "Город прекрасный, но было много туристов. Вечером мы вернулись домой уставшими, но счастливыми."}
+    ]
+  },
+  "review": null,
+  "vocabulary": [
+    {"word": "la città", "in_text": "città", "gender": "f", "plural": "le città", "ru": "город", "pos": "сущ.", "example": "Firenze è una città d'arte.", "example_ru": "Флоренция — город искусства."},
+    {"word": "il gelato", "in_text": "gelato", "gender": "m", "plural": "i gelati", "ru": "мороженое", "pos": "сущ.", "example": "Un gelato al cioccolato, per favore.", "example_ru": "Шоколадное мороженое, пожалуйста."},
+    {"word": "stanco", "in_text": "stanche", "ru": "уставший", "pos": "прил.", "example": "Sono stanco dopo il lavoro.", "example_ru": "Я устал после работы."}
+  ],
+  "grammar_notes": [
+    {"title": "Passato prossimo: essere o avere?", "explanation": "essere — глаголы движения и состояния (andare, venire, tornare, restare); причастие согласуется с подлежащим: sono andata, siamo tornate.\navere — большинство остальных: abbiamo visitato.", "examples": ["Siamo tornate a casa. — Мы (ж.) вернулись домой.", "Ho mangiato un gelato. — Я съел мороженое."]}
+  ],
+  "sections": [
+    {"title": "Грамматика", "tasks": [
+      {"id": "G1", "type": "gap_fill", "title": "Passato prossimo", "instruction": "Вставьте вспомогательный глагол.",
+       "items": [
+         {"text": "Ieri ___ andata a Roma.", "answers": [["sono"]]},
+         {"text": "Noi ___ visitato il Colosseo.", "answers": [["abbiamo"]]}
+       ]},
+      {"id": "G2", "type": "multiple_choice", "title": "Ударение", "instruction": "Выберите правильный вариант.",
+       "items": [{"question": "La città ___ bellissima.", "options": ["e", "è", "é"], "answer": "è", "explanation": "è — «есть» (essere), e — «и»."}]},
+      {"id": "E", "type": "open", "title": "Перевод", "instruction": "Переведите на итальянский.",
+       "items": [{"text": "Город очень красивый.", "answers": ["La città è molto bella.", "La città è bellissima."], "model_answer": "La città è bellissima."}]}
+    ]},
+    {"title": "Аудирование", "tasks": [
+      {"id": "L2", "type": "gap_fill", "title": "Диктант", "instruction": "Прослушайте и впишите слово.",
+       "items": [{"audio": "La sera siamo tornate a casa stanche ma felici.", "text": "La sera siamo tornate a casa ___ ma felici.", "answers": [["stanche"]]}]}
+    ]}
+  ]
+}

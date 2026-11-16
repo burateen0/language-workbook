@@ -1,0 +1,64 @@
+{
+  "schema": "workbook/v2",
+  "language": "de",
+  "meta": {"title": "Демо: Ein Tag in Berlin", "level": "A2", "topic": "Город и путешествия", "round": 1, "grammar_topics": ["Perfekt mit haben / sein", "Wechselpräpositionen"]},
+  "text": {
+    "title": "Ein Tag in Berlin",
+    "paragraphs": [
+      {"text": "Letzten Samstag bin ich mit meiner Schwester nach Berlin gefahren. Wir haben zuerst das **Brandenburger Tor** besucht und viele Fotos gemacht.", "ru": "В прошлую субботу я поехал с сестрой в Берлин. Сначала мы посетили Бранденбургские ворота и сделали много фотографий."},
+      {"text": "Danach sind wir mit dem Fahrrad an der Spree entlang gefahren. Am Mittag haben wir in einem kleinen **Café** gegessen. Der Kuchen war sehr lecker!", "ru": "Потом мы проехали на велосипеде вдоль Шпрее. В обед мы поели в маленьком кафе. Пирог был очень вкусным!"},
+      {"text": "Am Abend sind wir müde, aber glücklich nach Hause gekommen. Nächstes Jahr möchten wir wieder nach Berlin fahren.", "ru": "Вечером мы вернулись домой уставшими, но счастливыми. В следующем году мы хотим снова поехать в Берлин."}
+    ]
+  },
+  "review": null,
+  "vocabulary": [
+    {"word": "die Schwester", "in_text": "Schwester", "gender": "f", "plural": "die Schwestern", "ru": "сестра", "pos": "сущ.", "example": "Meine Schwester wohnt in München.", "example_ru": "Моя сестра живёт в Мюнхене."},
+    {"word": "das Fahrrad", "in_text": "Fahrrad", "gender": "n", "plural": "die Fahrräder", "ru": "велосипед", "pos": "сущ.", "example": "Ich fahre jeden Tag mit dem Fahrrad.", "example_ru": "Я каждый день езжу на велосипеде."},
+    {"word": "der Kuchen", "in_text": "Kuchen", "gender": "m", "plural": "die Kuchen", "ru": "пирог, торт", "pos": "сущ.", "example": "Der Kuchen ist noch warm.", "example_ru": "Пирог ещё тёплый."},
+    {"word": "besuchen", "in_text": "besucht", "plural": "besuchte – hat besucht", "ru": "посещать", "pos": "глаг.", "example": "Wir besuchen morgen das Museum.", "example_ru": "Завтра мы пойдём в музей."},
+    {"word": "lecker", "in_text": "lecker", "ru": "вкусный", "pos": "прил.", "example": "Die Suppe ist lecker.", "example_ru": "Суп вкусный."},
+    {"word": "müde", "in_text": "müde", "ru": "уставший", "pos": "прил.", "example": "Nach der Arbeit bin ich müde.", "example_ru": "После работы я устал."}
+  ],
+  "grammar_notes": [
+    {"title": "Perfekt mit haben / sein", "explanation": "haben/sein (спрягается, 2-е место) + Partizip II (в конце).\nsein — с глаголами движения и смены состояния (fahren, gehen, kommen, aufstehen), а также sein и bleiben.\nОстальные — с haben.", "examples": ["Ich bin nach Berlin gefahren. — Я поехал в Берлин.", "Wir haben Fotos gemacht. — Мы сделали фотографии."]},
+    {"title": "Wechselpräpositionen", "explanation": "in, an, auf, über, unter, vor, hinter, neben, zwischen:\nВопрос «где?» (Wo?) → Dativ, «куда?» (Wohin?) → Akkusativ.", "examples": ["Ich sitze im (in dem) Café. — Wo? → Dativ", "Ich gehe ins (in das) Café. — Wohin? → Akkusativ"]}
+  ],
+  "sections": [
+    {"title": "Лексика", "tasks": [
+      {"id": "A", "type": "matching", "title": "Слова и переводы", "instruction": "Сопоставьте слова и переводы.",
+       "items": [{"left": "das Fahrrad", "answer": "велосипед"}, {"left": "müde", "answer": "уставший"}, {"left": "lecker", "answer": "вкусный"}, {"left": "besuchen", "answer": "посещать"}], "extra": ["счастливый"]},
+      {"id": "C", "type": "multiple_choice", "title": "Артикль", "instruction": "Выберите правильный артикль.",
+       "items": [
+         {"question": "___ Fahrrad", "options": ["der", "die", "das"], "answer": "das"},
+         {"question": "___ Kuchen", "options": ["der", "die", "das"], "answer": "der"},
+         {"question": "___ Schwester", "options": ["der", "die", "das"], "answer": "die"}
+       ]}
+    ]},
+    {"title": "Грамматика", "tasks": [
+      {"id": "G1", "type": "gap_fill", "title": "Perfekt", "instruction": "Вставьте haben или sein в нужной форме.",
+       "items": [
+         {"text": "Wir ___ nach Hause gekommen.", "answers": [["sind"]], "explanation": "kommen — движение → sein."},
+         {"text": "Ich ___ viele Fotos gemacht.", "answers": [["habe"]]},
+         {"text": "___ du schon den Kuchen gegessen?", "answers": [["Hast"]], "explanation": "В начале вопроса — с заглавной."}
+       ]},
+      {"id": "G2", "type": "gap_fill", "title": "Wo? или Wohin?", "instruction": "Вставьте артикль в нужном падеже.",
+       "items": [
+         {"text": "Wir sitzen in ___ Café.", "answers": [["dem"]], "explanation": "Wo? → Dativ: in dem (im) Café."},
+         {"text": "Ich lege das Buch auf ___ Tisch.", "answers": [["den"]], "explanation": "Wohin? → Akkusativ, der Tisch → den Tisch."}
+       ]},
+      {"id": "G3", "type": "word_order", "title": "Порядок слов", "instruction": "Составьте предложение.",
+       "items": [{"words": ["Am Abend", "sind", "wir", "nach Hause", "gekommen"], "answers": ["Am Abend sind wir nach Hause gekommen", "Wir sind am Abend nach Hause gekommen"], "ru": "Вечером мы пришли домой.", "explanation": "Спрягаемый глагол — всегда на 2-м месте, Partizip II — в конце."}]},
+      {"id": "E", "type": "open", "title": "Перевод", "instruction": "Переведите на немецкий.",
+       "items": [{"text": "Пирог был очень вкусным.", "answers": ["Der Kuchen war sehr lecker."], "model_answer": "Der Kuchen war sehr lecker."}]}
+    ]},
+    {"title": "Чтение и аудирование", "tasks": [
+      {"id": "I", "type": "true_false", "title": "Richtig oder falsch?", "instruction": "Верно или неверно по тексту?", "options": ["T", "F"],
+       "items": [{"statement": "Sie sind mit dem Auto an der Spree entlang gefahren.", "answer": "F"}, {"statement": "Der Kuchen war lecker.", "answer": "T"}]},
+      {"id": "L2", "type": "gap_fill", "title": "Диктант", "instruction": "Прослушайте и впишите пропущенные слова.",
+       "items": [{"audio": "Nächstes Jahr möchten wir wieder nach Berlin fahren.", "text": "Nächstes ___ möchten wir wieder nach Berlin ___.", "answers": [["Jahr"], ["fahren"]]}]}
+    ]},
+    {"title": "Письмо", "tasks": [
+      {"id": "W", "type": "writing", "title": "Письмо", "instruction": "Напишите другу о своих выходных (50–80 слов). Используйте Perfekt.", "min_words": 50, "max_words": 80, "required_words": ["besuchen", "müde", "lecker"]}
+    ]}
+  ]
+}

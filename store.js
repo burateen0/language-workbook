@@ -1,7 +1,7 @@
 'use strict';
-/* Локальное хранилище вместо Python-сервера.
-   Тесты, попытки и банк ошибок живут в localStorage этого браузера.
-   Если localStorage недоступен (приватный режим, запрет cookies) — работаем в памяти до закрытия вкладки. */
+/* Локальное хранилище вместо сервера: тесты, попытки и банк ошибок живут в localStorage этого браузера.
+   Если localStorage недоступен (приватный режим) — работаем в памяти до закрытия вкладки.
+   Совместимо с данными первой (только английской) версии сайта: записи без языка считаются английскими. */
 
 const DB_PREFIX = 'ewb:db:';
 const DB = (() => {
@@ -42,6 +42,7 @@ function newTestId() {
   return `${d.getFullYear()}${p(d.getMonth() + 1)}${p(d.getDate())}-${p(d.getHours())}${p(d.getMinutes())}${p(d.getSeconds())}-${rnd}`;
 }
 const nowIso = () => new Date().toISOString().slice(0, 19);
+const langOf = (x) => (x && x.lang) || 'en';
 
 const store = {
   ids: () => DB.read('tests', []),
@@ -49,12 +50,12 @@ const store = {
   attempts: () => DB.read('attempts', []),
   bank: () => DB.read('bank', []),
 
-  saveTest(test, parentId) {
+  saveTest(test, parentId, lang) {
     const id = newTestId();
     let rootId = id;
     const parent = parentId ? store.get(parentId) : null;
     if (parent) rootId = parent.root_id || parent.id;
-    const rec = { id, created: nowIso(), parent_id: parent ? parentId : null, root_id: rootId, test };
+    const rec = { id, lang: lang || (parent && langOf(parent)) || 'en', created: nowIso(), parent_id: parent ? parentId : null, root_id: rootId, test };
     DB.write('test:' + id, rec);
     DB.write('tests', [...store.ids(), id]);
     return id;
@@ -70,18 +71,19 @@ const store = {
 
   addAttempt(a) {
     a.date = nowIso();
+    a.lang = a.lang || 'en';
     DB.write('attempts', [...store.attempts(), a]);
     if (a.mistakes && a.mistakes.length) {
       const bank = store.bank();
-      for (const m of a.mistakes) bank.push({ ...m, date: a.date, test_id: a.test_id, test_title: a.title });
-      DB.write('bank', bank.slice(-500));
+      for (const m of a.mistakes) bank.push({ ...m, lang: a.lang, date: a.date, test_id: a.test_id, test_title: a.title });
+      DB.write('bank', bank.slice(-800));
     }
   },
 
-  listTests() {
+  listTests(lang) {
     const byTest = {};
     for (const a of store.attempts()) (byTest[a.test_id] = byTest[a.test_id] || []).push(a);
-    return store.ids().map(store.get).filter(Boolean).map((rec) => {
+    return store.ids().map(store.get).filter((r) => r && langOf(r) === lang).map((rec) => {
       const meta = (rec.test && rec.test.meta) || {};
       const pcts = (byTest[rec.id] || []).map((t) => t.pct || 0);
       return {
@@ -93,18 +95,25 @@ const store = {
     });
   },
 
-  init() {
-    const tests = store.listTests();
+  langCounts() {
+    const c = {};
+    for (const id of store.ids()) { const r = store.get(id); if (r) c[langOf(r)] = (c[langOf(r)] || 0) + 1; }
+    return c;
+  },
+
+  init(lang) {
+    const tests = store.listTests(lang);
     const done = [];
     for (const t of [...tests].sort((a, b) => (b.created || '').localeCompare(a.created || ''))) {
       for (const g of t.grammar_topics) if (!done.includes(g)) done.push(g);
     }
-    const attempts = store.attempts();
+    const attempts = store.attempts().filter((a) => langOf(a) === lang);
     return {
       prompts: window.PROMPTS,
       tests,
+      counts: store.langCounts(),
       done_topics: done.slice(0, 15),
-      bank_count: store.bank().length,
+      bank_count: store.bank().filter((m) => langOf(m) === lang).length,
       stats: {
         attempts: attempts.length,
         avg_pct: attempts.length ? Math.round(attempts.reduce((s, a) => s + (a.pct || 0), 0) / attempts.length) : null,
@@ -115,7 +124,7 @@ const store = {
 
   exportAll() {
     return {
-      format: 'english-workbook-backup', version: 1, exported: nowIso(),
+      format: 'language-workbook-backup', version: 2, exported: nowIso(),
       tests: store.ids().map(store.get).filter(Boolean),
       attempts: store.attempts(),
       bank: store.bank(),
@@ -123,7 +132,9 @@ const store = {
   },
 
   importAll(data) {
-    if (!data || data.format !== 'english-workbook-backup') throw new Error('Это не файл резервной копии English Workbook.');
+    if (!data || !['language-workbook-backup', 'english-workbook-backup'].includes(data.format)) {
+      throw new Error('Это не файл резервной копии Language Workbook.');
+    }
     const ids = store.ids();
     let added = 0;
     for (const rec of data.tests || []) {
@@ -138,7 +149,7 @@ const store = {
     DB.write('attempts', [...store.attempts(), ...(data.attempts || []).filter((a) => !have.has(key(a)))]);
     const bkey = (m) => `${m.test_id}|${m.date}|${m.context}|${m.user}`;
     const hb = new Set(store.bank().map(bkey));
-    DB.write('bank', [...store.bank(), ...(data.bank || []).filter((m) => !hb.has(bkey(m)))].slice(-500));
+    DB.write('bank', [...store.bank(), ...(data.bank || []).filter((m) => !hb.has(bkey(m)))].slice(-800));
     return added;
   },
 
@@ -148,60 +159,25 @@ const store = {
   },
 };
 
-/** Тот же интерфейс, что был у Python-сервера: api('/api/...', body?) */
+/** Интерфейс в стиле сервера: api('/api/...', body?) */
 async function localApi(path, body) {
   const url = new URL(path, location.href);
   const p = url.pathname.replace(/^.*\/api\//, '/api/');
+  const lang = url.searchParams.get('lang') || (body && body.lang) || 'en';
   switch (p) {
-    case '/api/init': return store.init();
+    case '/api/init': return store.init(lang);
     case '/api/test':
       if (body === undefined) {
         const rec = store.get(url.searchParams.get('id') || '');
         if (!rec) throw new Error('Тест не найден в этом браузере. Возможно, он был создан на другом устройстве — перенесите его через резервную копию.');
-        return rec;
+        return { ...rec, lang: langOf(rec) };
       }
       if (!body.test || typeof body.test !== 'object') throw new Error('test must be an object');
-      return { id: store.saveTest(body.test, body.parent_id) };
+      return { id: store.saveTest(body.test, body.parent_id, body.lang) };
     case '/api/test/delete': return { ok: store.deleteTest(body.id) };
     case '/api/attempt': store.addAttempt(body); return { ok: true };
-    case '/api/bank': return store.bank();
-    case '/api/bank/clear': DB.write('bank', []); return { ok: true };
+    case '/api/bank': return store.bank().filter((m) => langOf(m) === lang);
+    case '/api/bank/clear': DB.write('bank', store.bank().filter((m) => langOf(m) !== lang)); return { ok: true };
     default: throw new Error('unknown endpoint ' + p);
   }
-}
-
-/** Карточка на главной: демо, резервная копия, очистка. Вызывается из renderHome (app.js). */
-function dataCard() {
-  const fileInp = h('input', { type: 'file', accept: '.json', style: 'display:none' });
-  fileInp.addEventListener('change', async () => {
-    const f = fileInp.files[0];
-    if (!f) return;
-    try {
-      const n = store.importAll(JSON.parse(await f.text()));
-      toast(`Импортировано тестов: ${n}`);
-      renderHome();
-    } catch (e) { toast(e.message, true, 6000); }
-  });
-  const download = () => {
-    const blob = new Blob([JSON.stringify(store.exportAll(), null, 1)], { type: 'application/json' });
-    const a = h('a', { href: URL.createObjectURL(blob), download: `english-workbook-backup-${new Date().toISOString().slice(0, 10)}.json` });
-    document.body.append(a); a.click(); a.remove();
-  };
-  return h('div', { class: 'card' },
-    h('h2', null, 'Данные'),
-    h('p', { class: 'sub' }, DB.persistent
-      ? 'Тесты и результаты сохраняются только в этом браузере на этом устройстве. Для переноса на другое устройство используйте резервную копию.'
-      : '⚠ Браузер запретил сохранение (приватный режим?) — данные пропадут после закрытия вкладки.'),
-    h('div', { class: 'row' },
-      h('button', { class: 'btn', onclick: async () => {
-        const { id } = await api('/api/test', { test: window.DEMO_TEST });
-        location.hash = '#test=' + id;
-      } }, '▶ Демо-тест'),
-      h('button', { class: 'btn', onclick: download }, '⬇ Резервная копия'),
-      h('button', { class: 'btn', onclick: () => fileInp.click() }, '⬆ Восстановить'), fileInp,
-      h('span', { class: 'spacer' }),
-      h('button', { class: 'btn sm danger', onclick: () => {
-        if (!confirm('Удалить ВСЕ тесты, попытки и банк ошибок из этого браузера?')) return;
-        store.wipe(); renderHome();
-      } }, 'Удалить всё')));
 }

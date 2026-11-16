@@ -1,0 +1,45 @@
+{
+  "schema": "workbook/v2",
+  "language": "fr",
+  "meta": {"title": "Демо: Au marché", "level": "A2", "topic": "Еда и покупки", "round": 1, "grammar_topics": ["Articles partitifs (du, de la, de)", "Passé composé (avoir / être)"]},
+  "text": {
+    "title": "Au marché",
+    "paragraphs": [
+      {"text": "Samedi matin, je suis allée au **marché** avec mon frère. Nous avons acheté du pain, de la confiture et des pommes.", "ru": "В субботу утром я пошла на рынок с братом. Мы купили хлеба, варенья и яблок."},
+      {"text": "Le vendeur était très sympa. Il nous a donné une **pêche** en cadeau ! Ensuite, nous sommes rentrés à la maison pour préparer le déjeuner.", "ru": "Продавец был очень приятным. Он подарил нам персик! Потом мы вернулись домой готовить обед."}
+    ]
+  },
+  "review": null,
+  "vocabulary": [
+    {"word": "le marché", "in_text": "marché", "gender": "m", "ru": "рынок", "pos": "сущ.", "example": "Le marché est ouvert le dimanche.", "example_ru": "Рынок открыт по воскресеньям."},
+    {"word": "la pêche", "in_text": "pêche", "gender": "f", "ru": "персик", "pos": "сущ.", "example": "J'adore les pêches.", "example_ru": "Обожаю персики."},
+    {"word": "le vendeur", "in_text": "vendeur", "gender": "m", "ru": "продавец", "pos": "сущ.", "example": "Le vendeur est très gentil.", "example_ru": "Продавец очень любезный."},
+    {"word": "préparer", "in_text": "préparer", "ru": "готовить", "pos": "глаг.", "example": "Je prépare le dîner.", "example_ru": "Я готовлю ужин."}
+  ],
+  "grammar_notes": [
+    {"title": "Articles partitifs", "explanation": "du (m), de la (f), de l' (перед гласной) — неопределённое количество чего-то неисчисляемого.\nПосле отрицания → de / d': Je n'ai pas de pain.", "examples": ["Je mange du pain. — Я ем хлеб.", "Elle ne boit pas de café. — Она не пьёт кофе."]}
+  ],
+  "sections": [
+    {"title": "Грамматика", "tasks": [
+      {"id": "G1", "type": "gap_fill", "title": "Партитивы", "instruction": "Вставьте du, de la, de l' или de.",
+       "items": [
+         {"text": "Nous avons acheté ___ confiture.", "answers": [["de la"]]},
+         {"text": "Je n'ai pas ___ pain.", "answers": [["de"]], "explanation": "После отрицания — de."},
+         {"text": "Il boit ___ eau.", "answers": [["de l'"]]}
+       ]},
+      {"id": "G2", "type": "gap_fill", "title": "Passé composé", "instruction": "Поставьте глагол в passé composé.",
+       "items": [
+         {"text": "Samedi, je ___ (aller) au marché.", "answers": [["suis allée", "suis allé"]]},
+         {"text": "Le vendeur nous ___ (donner) une pêche.", "answers": [["a donné"]]}
+       ]},
+      {"id": "E", "type": "open", "title": "Перевод", "instruction": "Переведите на французский.",
+       "items": [{"text": "Мы вернулись домой.", "answers": ["Nous sommes rentrés à la maison.", "Nous sommes rentrés chez nous.", "On est rentrés à la maison."], "model_answer": "Nous sommes rentrés à la maison."}]}
+    ]},
+    {"title": "Чтение и аудирование", "tasks": [
+      {"id": "I", "type": "true_false", "title": "Vrai ou faux ?", "instruction": "Верно или неверно?", "options": ["T", "F"],
+       "items": [{"statement": "Le vendeur leur a donné une pomme.", "answer": "F"}]},
+      {"id": "L1", "type": "multiple_choice", "title": "Аудирование", "instruction": "Прослушайте и ответьте.",
+       "items": [{"audio": "— Bonjour, je voudrais un kilo de pêches, s'il vous plaît. — Voilà, ça fait quatre euros.", "question": "Combien coûtent les pêches ?", "options": ["deux euros", "quatre euros", "quatorze euros"], "answer": "quatre euros"}]}
+    ]}
+  ]
+}
